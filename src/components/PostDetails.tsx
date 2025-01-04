@@ -27,14 +27,14 @@ export const PostDetails: React.FC<Props> = ({
     setCommentsLoading(true);
     getCommentsByPost(postSelected?.id ?? null)
       .then(setComments)
-      .catch(() => setCommentsError('Something went wrong'))
+      .catch(() => setCommentsError('Unable to load comments'))
       .finally(() => setCommentsLoading(false));
   }, [postSelected, setComments]);
 
   const deleteComment = (commentId: number) => {
     setComments(comments.filter(comment => comment.id !== commentId));
     removeComment(commentId).catch(() => {
-      setCommentsError('Something went wrong');
+      setCommentsError('Unable to delete comment');
     });
   };
 
